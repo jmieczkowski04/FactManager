@@ -68,7 +68,6 @@ void UFactManager::UpdateTimer()
 	TArray<FName> FactsToRemove;
 	for (auto& Fact : Facts)
 	{
-		//TODO: test and end this shit
 		Fact.Value.ValidFor--;
 		if (!Fact.Value.ValidFor)
 			FactsToRemove.Add(Fact.Key);

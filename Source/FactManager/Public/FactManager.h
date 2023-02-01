@@ -63,7 +63,7 @@ public:
 	bool DoesFactExist(FName Name);
 
 	/**
-	* Removes facts
+	* Removes fact
 	* @param Name Fact names
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
