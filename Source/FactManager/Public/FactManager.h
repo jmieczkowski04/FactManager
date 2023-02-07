@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Fact.h"
+#include "SaveFact.h"
 #include "FactManager.generated.h"
 
 
@@ -77,6 +78,20 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void SetFact(FName Name, int32 Value = 1, int32 ValidFor = -1);
+
+	/**
+	* Returns copy of all facts in current state. Designed to save facts in .sav file.
+	* @return TArray of all Facts
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Gameplay|Save")
+	TArray<FSaveFact> SaveFacts();
+
+	/**
+	* Set all facts. Designed to restore facts form .sav file.
+	* @param TArray of all Facts
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Gameplay|Save")
+	void SetFacts(TArray<FSaveFact> FactsToSet);
 
 protected:
 	void UpdateTimer();

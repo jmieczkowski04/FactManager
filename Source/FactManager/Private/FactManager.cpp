@@ -78,3 +78,39 @@ void UFactManager::UpdateTimer()
 		Facts.Remove(FactName);
 	}
 }
+
+//save functions
+
+TArray<FSaveFact> UFactManager::SaveFacts()
+{
+	TArray<FSaveFact> Out;
+	Out.Reserve(Facts.Num());
+
+	for (auto& Fact : Facts)
+	{
+		FSaveFact FactToSave = {};
+
+		FactToSave.FactName = Fact.Key;
+		FactToSave.ValidFor = Fact.Value.ValidFor;
+		FactToSave.Value = Fact.Value.Value;
+
+		Out.Add(FactToSave);
+	}
+
+	return Out;
+}
+
+void UFactManager::SetFacts(TArray<FSaveFact> FactsToSave)
+{
+	Facts.Empty(FactsToSave.Num());
+
+	for (auto& SaveFact : FactsToSave)
+	{
+		FFact Fact = {};
+		Fact.Value = SaveFact.Value;
+		Fact.ValidFor = SaveFact.ValidFor;
+
+		Facts.Add(SaveFact.FactName, Fact);
+	}
+
+}
